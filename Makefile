@@ -7,7 +7,7 @@ OBJ = main.o utils.o dataset.o tree.o forest.o
 all: random_forest
 
 random_forest: $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o random_forest
+	$(CC) $(CFLAGS) $(OBJ) -o random_forest -lm
 
 main.o: main.c
 	$(CC) $(CFLAGS) -c main.c
