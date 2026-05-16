@@ -8,15 +8,22 @@ typedef struct {                            //лес
     Node_Tree **trees; //массив указательней на деревья
     int n_trees; //количество деревьев
     Params_Tree params; //параметры деревьев
-    int num_classes; //количество классов
+    int num_classes; //количество классов (классификации)
 } Forest;
 
-Forest *train_forest(double **X, int *y, int n_objects, int n_features,                  //создание леса
-                            int n_trees, Params_Tree params);
+Forest *train_forest(double **X, int *y, int n_objects, int n_features, //создание леса для классификации
+                     int n_trees, Params_Tree params);
 
-int predict_forest(Forest *forest, const double *x); // предсказание леса
+Forest *train_regression_forest(double **X, double *y, int n_objects, //создание леса для регрессии
+                     int n_features, int n_trees, Params_Tree params);
 
-double accuracy_forest(Forest *forest, Dataset *ds);  //точность модели/ леса
+int predict_forest(Forest *forest, const double *x); // предсказание леса классификации
+
+double predict_regression_forest(Forest *forest, const double *x); //пердсказание леса регрессии
+
+double accuracy_forest(Forest *forest, Dataset *ds);  //точность модели/ леса классификации
+
+double mse_forest(Forest *forest, Dataset *ds); //точность модели/ леса регрессии
 
 void free_forest(Forest *forest); //освобождение леса
 
